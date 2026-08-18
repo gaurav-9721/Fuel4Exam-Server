@@ -25,6 +25,7 @@ share/python-wheels/
 .installed.cfg
 *.egg
 MANIFEST
+instructions.md
 
 # PyInstaller
 #   Usually these files are written by a python script from a template
@@ -216,3 +217,42 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Environment and local configuration
+.env*
+!.env.example
+*.local
+*.override
+
+# IDE and editor metadata
+.idea/
+.vscode/
+*.code-workspace
+*.swp
+*.swo
+*~
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Local application and database files
+*.sqlite
+*.sqlite3
+*.db
+instance/
+logs/
+tmp/
+temp/
+
+# Test and type-checking artifacts
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+pytestdebug.log
+
+# Local Docker overrides and state
+docker-compose.override.yml
+.docker/
