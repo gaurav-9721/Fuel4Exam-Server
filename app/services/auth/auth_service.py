@@ -43,10 +43,10 @@ class AuthService:
         if existing_user:
             raise UserAlreadyExistsException(f"Email {user_data.email} already registered")
         
-        # Verify role exists
-        role = db.query(Role).filter(Role.role_id == user_data.role_id).first()
+        # All public registrations create candidate accounts.
+        role = db.query(Role).filter(Role.role_code == "candidate").first()
         if not role:
-            raise UserAlreadyExistsException(f"Role ID {user_data.role_id} does not exist")
+            raise UserNotFoundException("Candidate role is not configured")
         
         # Hash password
         hashed_password = hash_password(user_data.password)
@@ -57,7 +57,7 @@ class AuthService:
             email=user_data.email,
             phone=user_data.phone,
             password_hash=hashed_password,
-            role_id=user_data.role_id,
+            role_id=role.role_id,
             is_active=True,
             is_email_verified=False
         )

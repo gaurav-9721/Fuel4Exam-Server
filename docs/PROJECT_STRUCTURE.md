@@ -61,9 +61,10 @@ Fuel4Exam-Server/
 ├── docker-compose.yml            # Docker compose configuration
 │
 ├── README.md                     # Project overview & setup
-├── DEVELOPMENT.md                # Development guide & best practices
-├── API_DOCUMENTATION.md          # API endpoints reference
-├── PROJECT_STRUCTURE.md          # This file
+├── docs/                         # Project documentation
+│   ├── DEVELOPMENT.md            # Development guide & best practices
+│   ├── API_DOCUMENTATION.md      # API endpoints reference
+│   └── PROJECT_STRUCTURE.md      # This file
 │
 └── [other git files]
 ```
@@ -462,8 +463,8 @@ GET /health
 ## Support & Documentation
 
 - **README.md**: Project overview and setup
-- **DEVELOPMENT.md**: Development guide and best practices
-- **API_DOCUMENTATION.md**: Complete API reference
-- **PROJECT_STRUCTURE.md**: This file - architecture overview
+- **docs/DEVELOPMENT.md**: Development guide and best practices
+- **docs/API_DOCUMENTATION.md**: Complete API reference
+- **docs/PROJECT_STRUCTURE.md**: This file - architecture overview
 
 For detailed information on specific components, refer to inline code documentation.

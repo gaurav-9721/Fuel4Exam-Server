@@ -29,6 +29,16 @@ class Settings(BaseSettings):
     
     # Email
     mail_from: str = "noreply@fuel4exam.com"
+    mail_server: str = ""
+    mail_port: int = 587
+    mail_username: str = ""
+    mail_password: str = ""
+
+    # Logging
+    log_level: str = "INFO"
+
+    # Seed credentials are supplied only through the local environment.
+    seed_candidate_password: str = ""
     
     class Config:
         env_file = ".env"

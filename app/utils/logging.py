@@ -3,7 +3,12 @@ Logging configuration
 """
 import logging
 import logging.config
+from pathlib import Path
 from app.core.config import settings
+
+LOG_DIR = Path(__file__).resolve().parents[2] / "logs"
+LOG_FILE = LOG_DIR / "fuel4exam.log"
+LOG_DIR.mkdir(parents=True, exist_ok=True)
 
 LOGGING_CONFIG = {
     "version": 1,
@@ -25,7 +30,7 @@ LOGGING_CONFIG = {
         "detailed": {
             "formatter": "detailed",
             "class": "logging.handlers.RotatingFileHandler",
-            "filename": "logs/fuel4exam.log",
+            "filename": str(LOG_FILE),
             "maxBytes": 10485760,  # 10MB
             "backupCount": 5,
         },

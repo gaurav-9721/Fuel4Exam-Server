@@ -32,7 +32,7 @@ router = APIRouter(prefix="/auth", tags=["Authentication"])
 
 @router.post(
     "/register",
-    response_model=AuthResponse,
+    response_model=UserResponse,
     status_code=status.HTTP_201_CREATED,
     summary="Register a new user",
     responses={
@@ -52,22 +52,14 @@ def register(
     - **email**: User email address (must be unique)
     - **password**: User password (minimum 8 characters)
     - **phone**: User phone number (optional)
-    - **role_id**: Role ID from roles table (default: 1 for student)
+    - New accounts are assigned the candidate role automatically
     """
     try:
         # Register user
         user = AuthService.register_user(db, user_data)
         
-        # Generate tokens
-        tokens = AuthService.generate_tokens(user.user_id)
-        
-        # Build response
-        return AuthResponse(
-            access_token=tokens.access_token,
-            refresh_token=tokens.refresh_token,
-            token_type=tokens.token_type,
-            user=UserResponse.from_attributes(user)
-        )
+        # Tokens are issued only after an explicit login.
+        return UserResponse.model_validate(user)
     except UserAlreadyExistsException as e:
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
@@ -113,7 +105,7 @@ def login(
             access_token=tokens.access_token,
             refresh_token=tokens.refresh_token,
             token_type=tokens.token_type,
-            user=UserResponse.from_attributes(user)
+            user=UserResponse.model_validate(user)
         )
     except InvalidCredentialsException as e:
         raise HTTPException(

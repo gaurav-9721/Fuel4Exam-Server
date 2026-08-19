@@ -26,9 +26,8 @@ class UserRegister(BaseModel):
     """Schema for user registration"""
     full_name: str = Field(..., min_length=1, max_length=255)
     email: EmailStr
-    password: str = Field(..., min_length=8, max_length=100)
+    password: str = Field(..., min_length=8, max_length=72)
     phone: Optional[str] = Field(None, max_length=20)
-    role_id: int = Field(default=1, description="Role ID from roles table")
     
     @field_validator('full_name')
     @classmethod

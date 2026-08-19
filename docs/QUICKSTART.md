@@ -47,9 +47,7 @@ python -c "from app.db.session import init_db; init_db()"
 ```
 
 **Sample Users Created:**
-- Admin: `admin@fuel4exam.com` / `admin@123456`
-- Instructor: `instructor@fuel4exam.com` / `instructor@123456`
-- Student: `student@fuel4exam.com` / `student@123456`
+- Candidate: `candidate@fuel4exam.com` / value of `SEED_CANDIDATE_PASSWORD`
 
 ---
 
@@ -179,7 +177,7 @@ POST /api/v1/users/me/deactivate → Deactivate account
 
 ### Command Line (psql)
 ```bash
-psql postgresql://neondb_owner:npg_I15hUKkEPGet@ep-lively-art-azfphgc0-pooler.c-3.ap-southeast-1.aws.neon.tech/fuel4exam?sslmode=require&channel_binding=require
+psql "$DATABASE_URL"
 
 # Check tables
 \dt
@@ -337,7 +335,7 @@ gunicorn -w 4 -b 0.0.0.0:8000 app.main:app
 
 ## Support
 
-- 📖 Documentation: See README.md, DEVELOPMENT.md, API_DOCUMENTATION.md
+- 📖 Documentation: See [README.md](../README.md), [DEVELOPMENT.md](DEVELOPMENT.md), and [API_DOCUMENTATION.md](API_DOCUMENTATION.md)
 - 🐛 Issues: Check troubleshooting section
 - 💬 Questions: Review inline code comments and docstrings
 

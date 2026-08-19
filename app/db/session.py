@@ -16,7 +16,7 @@ engine = create_engine(
     pool_size=20,
     max_overflow=0,
     connect_args={
-        "server_settings": {"application_name": "fuel4exam"},
+        "application_name": "fuel4exam",
     }
 )
 

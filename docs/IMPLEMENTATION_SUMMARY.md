@@ -107,10 +107,11 @@ Fuel4Exam-Server/
 ├── docker-compose.yml                ← Docker Compose Config
 │
 ├── README.md                         ← Project Overview
-├── QUICKSTART.md                     ← 5-Min Setup Guide
-├── DEVELOPMENT.md                    ← Dev Guide
-├── API_DOCUMENTATION.md              ← API Reference
-├── PROJECT_STRUCTURE.md              ← Architecture Docs
+├── docs/                             ← Project documentation
+│   ├── QUICKSTART.md                 ← 5-Min Setup Guide
+│   ├── DEVELOPMENT.md                ← Dev Guide
+│   ├── API_DOCUMENTATION.md          ← API Reference
+│   └── PROJECT_STRUCTURE.md          ← Architecture Docs
 │
 └── .gitignore                        ← Git Ignore Rules
 ```
@@ -263,10 +264,10 @@ curl -X GET http://localhost:8000/api/v1/users/me \
 | Document | Purpose |
 |----------|---------|
 | **README.md** | Project overview, features, setup instructions |
-| **QUICKSTART.md** | 5-minute setup guide with examples |
-| **DEVELOPMENT.md** | Comprehensive development guide & best practices |
-| **API_DOCUMENTATION.md** | Complete API reference with examples |
-| **PROJECT_STRUCTURE.md** | Architecture and design decisions |
+| **docs/QUICKSTART.md** | 5-minute setup guide with examples |
+| **docs/DEVELOPMENT.md** | Comprehensive development guide & best practices |
+| **docs/API_DOCUMENTATION.md** | Complete API reference with examples |
+| **docs/PROJECT_STRUCTURE.md** | Architecture and design decisions |
 
 ---
 
@@ -347,7 +348,7 @@ SSL: Required
 
 **Using psql:**
 ```bash
-psql postgresql://neondb_owner:npg_I15hUKkEPGet@...
+psql "$DATABASE_URL"
 ```
 
 **Using Neon Console:**
@@ -361,20 +362,10 @@ Configure connection with the above credentials
 ## 🎯 Sample Users (After seed.py)
 
 ```
-Admin Account:
-  Email: admin@fuel4exam.com
-  Password: admin@123456
-  Role: admin
-
-Instructor Account:
-  Email: instructor@fuel4exam.com
-  Password: instructor@123456
-  Role: instructor
-
-Student Account:
-  Email: student@fuel4exam.com
-  Password: student@123456
-  Role: student
+Candidate Account:
+  Email: candidate@fuel4exam.com
+  Password: value of SEED_CANDIDATE_PASSWORD in .env
+  Role: candidate
 ```
 
 ---
@@ -475,10 +466,10 @@ Return user profile or 401 error
 
 All documentation is included:
 - **README.md**: Setup and overview
-- **QUICKSTART.md**: 5-minute guide
-- **DEVELOPMENT.md**: Development practices
-- **API_DOCUMENTATION.md**: API reference
-- **PROJECT_STRUCTURE.md**: Architecture details
+- **docs/QUICKSTART.md**: 5-minute guide
+- **docs/DEVELOPMENT.md**: Development practices
+- **docs/API_DOCUMENTATION.md**: API reference
+- **docs/PROJECT_STRUCTURE.md**: Architecture details
 - **Inline code comments**: Implementation details
 
 ---

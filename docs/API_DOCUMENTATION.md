@@ -478,9 +478,7 @@ The system supports three user roles:
 
 | Role | Description | Permissions |
 |------|-------------|-------------|
-| `student` | Exam preparation candidate | Take exams, view results |
-| `instructor` | Exam creator and grader | Create exams, grade submissions |
-| `admin` | System administrator | Full system access |
+| `candidate` | Exam preparation candidate | Take exams, view results |
 
 ---
 

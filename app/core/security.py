@@ -1,13 +1,10 @@
-"""
-Security utilities for password hashing and verification
-"""
-from passlib.context import CryptContext
+"""Security utilities for password hashing and verification."""
+import bcrypt
 import logging
 
 logger = logging.getLogger(__name__)
 
-# Password hashing context using bcrypt
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+MAX_BCRYPT_PASSWORD_BYTES = 72
 
 
 def hash_password(password: str) -> str:
@@ -20,7 +17,10 @@ def hash_password(password: str) -> str:
     Returns:
         Hashed password string
     """
-    return pwd_context.hash(password)
+    password_bytes = password.encode("utf-8")
+    if len(password_bytes) > MAX_BCRYPT_PASSWORD_BYTES:
+        raise ValueError("Password cannot exceed 72 bytes")
+    return bcrypt.hashpw(password_bytes, bcrypt.gensalt()).decode("utf-8")
 
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
@@ -34,4 +34,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     Returns:
         True if password matches, False otherwise
     """
-    return pwd_context.verify(plain_password, hashed_password)
+    password_bytes = plain_password.encode("utf-8")
+    if len(password_bytes) > MAX_BCRYPT_PASSWORD_BYTES:
+        return False
+    return bcrypt.checkpw(password_bytes, hashed_password.encode("utf-8"))

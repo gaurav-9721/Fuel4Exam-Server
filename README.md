@@ -157,7 +157,7 @@ The application uses Neon PostgreSQL cloud database. To access:
 
 ### Using psql
 ```bash
-psql postgresql://neondb_owner:npg_I15hUKkEPGet@ep-lively-art-azfphgc0-pooler.c-3.ap-southeast-1.aws.neon.tech/fuel4exam?sslmode=require&channel_binding=require
+psql "$DATABASE_URL"
 ```
 
 ## Environment Variables
@@ -171,6 +171,14 @@ See `.env.example` for all configuration options:
 - `DEBUG`: Debug mode (False in production)
 - `ENVIRONMENT`: Environment name (production/development)
 - `ALLOWED_ORIGINS`: CORS allowed origins
+
+## Documentation
+
+- [Quickstart](docs/QUICKSTART.md)
+- [Development Guide](docs/DEVELOPMENT.md)
+- [API Documentation](docs/API_DOCUMENTATION.md)
+- [Project Structure](docs/PROJECT_STRUCTURE.md)
+- [Implementation Summary](docs/IMPLEMENTATION_SUMMARY.md)
 
 ## Future Enhancements
 
