@@ -2,7 +2,8 @@
 User profile endpoints - Get, Update, Deactivate
 Works with the existing database schema
 """
-from fastapi import APIRouter, Depends, HTTPException, status, Header
+from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from sqlalchemy.orm import Session
 from app.db.session import get_db
 from app.schemas.user import (
@@ -23,16 +24,17 @@ import logging
 logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/users", tags=["User Profile"])
+security = HTTPBearer(auto_error=False)
 
 
 def get_current_user_from_header(
-    authorization: Optional[str] = Header(None),
+    credentials: Optional[HTTPAuthorizationCredentials] = Depends(security),
     db: Session = Depends(get_db)
 ):
     """
     Dependency to extract and validate user from Authorization header
     """
-    if not authorization:
+    if not credentials:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Missing authorization header",
@@ -40,11 +42,7 @@ def get_current_user_from_header(
         )
     
     try:
-        scheme, token = authorization.split()
-        if scheme.lower() != "bearer":
-            raise ValueError("Invalid authorization scheme")
-        
-        user = AuthService.get_current_user(db, token)
+        user = AuthService.get_current_user(db, credentials.credentials)
         return user
     except InvalidTokenException:
         raise HTTPException(

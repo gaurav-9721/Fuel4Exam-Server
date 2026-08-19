@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     refresh_token_expire_days: int = 7
     
     # CORS
-    allowed_origins: str = "http://localhost:3000,http://localhost:8000"
+    allowed_origins: str = "*"
     
     # Email
     mail_from: str = "noreply@fuel4exam.com"
